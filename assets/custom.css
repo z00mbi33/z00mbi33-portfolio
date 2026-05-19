@@ -58,9 +58,8 @@ h4 {
 }
 
 .nav {
-    position: fixed;
+    position: sticky;
     top: 0;
-    left: 0;
     z-index: 10;
     width: 100%;
     border-bottom: 1px solid var(--line);
@@ -68,7 +67,6 @@ h4 {
     backdrop-filter: blur(12px);
 }
 
-.nav,
 main,
 .contact-section,
 .footer {
@@ -102,7 +100,7 @@ main,
 }
 
 main {
-    padding-top: 72px;
+    padding-top: 0;
 }
 
 .error-main {
@@ -466,12 +464,8 @@ li + li {
         display: none;
     }
 
-    main {
-        padding-top: 64px;
-    }
-
     .hero {
-        min-height: calc(100vh - 64px);
+        min-height: calc(100vh - 65px);
     }
 
     .split,
