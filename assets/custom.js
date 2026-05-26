@@ -1,1 +1,314 @@
-(()=>{const A=document.getElementById("scatter-background"),B=A&&A.getContext("2d");if(!A||!B)return;const C=window.matchMedia("(prefers-reduced-motion: reduce)").matches,D="20, 52, 95",E={x:innerWidth/2,y:innerHeight/2,a:!1};let F=[],G=0,H=0,I=0;const J=()=>innerWidth<560?36:innerWidth<900?58:92,K=()=>{const a=Math.random()*Math.PI*2,b=Math.random()*.018+.014;return{x:Math.cos(a)*b,y:Math.sin(a)*b}},L=()=>{const a=K();return{b:Math.random()*G,c:Math.random()*H,d:a.x,e:a.y,f:Math.random()*Math.PI*2,g:Math.random()*.28+.12,h:Math.random()*1.8+1.1,i:Math.random()*5e3,j:Math.random()*4e3+7e3}},M=a=>Math.max(0,Math.min(Math.min(1,a.i/1200),Math.min(1,(a.j-a.i)/1800))),N=()=>{const a=L();return{...a,x:a.b,y:a.c,k:C?1:M(a),l:0}},O=()=>{const a=Math.min(devicePixelRatio||1,2);G=innerWidth,H=innerHeight,A.width=Math.floor(G*a),A.height=Math.floor(H*a),A.style.width=`${G}px`,A.style.height=`${H}px`,B.setTransform(a,0,0,a,0,0),F=Array.from({length:J()},N)},P=(a=0)=>{const b=I?Math.min(a-I,32):16;I=a,B.clearRect(0,0,G,H);const c=Math.min(220,Math.max(150,G*.16)),d=G<560?95:135,e=a*.001;for(const f of F){if(!C){if(f.i+=b,f.b+=f.d*b+Math.cos(e*f.g+f.f)*.035,f.c+=f.e*b+Math.sin(e*f.g+f.f)*.035,(f.b<-20||f.b>G+20)&&(f.d*=-1,f.b=Math.min(G+20,Math.max(-20,f.b))),(f.c<-20||f.c>H+20)&&(f.e*=-1,f.c=Math.min(H+20,Math.max(-20,f.c))),f.k+=(M(f)-f.k)*.08,f.i>f.j&&f.k<.04){const a=L();f.b=a.b,f.c=a.c,f.d=a.d,f.e=a.e,f.f=a.f,f.g=a.g,f.h=a.h,f.i=0,f.j=a.j,f.k=0,f.l=0}}else f.k=1;const g=f.b-E.x,h=f.c-E.y,i=Math.hypot(g,h),j=E.a?Math.max(0,1-i/c):0,k=j*j*(3-2*j),l=k*42,m=Math.atan2(h,g);f.x=f.b+Math.cos(m)*l,f.y=f.c+Math.sin(m)*l,f.l+=(k-f.l)*.08}for(let a=0;a<F.length;a++)for(let b=a+1;b<F.length;b++){const c=F[a],e=F[b],g=Math.hypot(c.x-e.x,c.y-e.y);if(g<d){const a=Math.max(c.l||0,e.l||0)*.34,b=((1-g/d)*.2+a)*Math.min(c.k,e.k);B.strokeStyle=`rgba(${D}, ${b})`,B.lineWidth=1,B.beginPath(),B.moveTo(c.x,c.y),B.lineTo(e.x,e.y),B.stroke()}}for(const a of F){const b=(.38+(a.l||0)*.48)*a.k,c=a.h+(a.l||0)*2.6;B.fillStyle=`rgba(${D}, ${b})`,B.beginPath(),B.arc(a.x,a.y,c,0,Math.PI*2),B.fill()}C||requestAnimationFrame(P)};O(),P(),C||(addEventListener("resize",O,{passive:!0}),addEventListener("pointermove",a=>{E.x=a.clientX,E.y=a.clientY,E.a=!0},{passive:!0}),addEventListener("pointerleave",()=>{E.a=!1}))})();
+(() => {
+    const STORAGE_KEY = "theme";
+    const root = document.documentElement;
+    const themeToggle = document.querySelector(".theme-toggle");
+
+    const getSystemTheme = () => (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+
+    const getSavedTheme = () => {
+        const savedTheme = window.localStorage.getItem(STORAGE_KEY);
+        return savedTheme === "dark" || savedTheme === "light" ? savedTheme : null;
+    };
+
+    const getCurrentTheme = () => root.dataset.theme === "dark" ? "dark" : "light";
+
+    const syncThemeToggleState = (theme) => {
+        if (!themeToggle) return;
+
+        const isDark = theme === "dark";
+        themeToggle.setAttribute("aria-pressed", String(isDark));
+        themeToggle.setAttribute("aria-label", isDark ? "Switch to light mode" : "Switch to dark mode");
+    };
+
+    const applyTheme = (theme) => {
+        root.dataset.theme = theme;
+        syncThemeToggleState(theme);
+    };
+
+    const initialTheme = getSavedTheme() || getSystemTheme();
+    applyTheme(initialTheme);
+
+    if (themeToggle) {
+        themeToggle.addEventListener("click", () => {
+            const nextTheme = getCurrentTheme() === "dark" ? "light" : "dark";
+            window.localStorage.setItem(STORAGE_KEY, nextTheme);
+            applyTheme(nextTheme);
+        });
+    }
+
+    const canvas = document.getElementById("scatter-background");
+    const ctx = canvas && canvas.getContext("2d");
+
+    if (!canvas || !ctx) return;
+
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const canUseHoverPointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    const getScatterColor = () => {
+        const value = getComputedStyle(root).getPropertyValue("--scatter-color").trim();
+        return value || "20, 52, 95";
+    };
+
+    const parseScatterColor = (colorValue) => {
+        const channels = colorValue
+            .split(",")
+            .map((part) => Number.parseFloat(part.trim()))
+            .filter((value) => Number.isFinite(value));
+
+        if (channels.length < 3) {
+            return { r: 20, g: 52, b: 95 };
+        }
+
+        return {
+            r: Math.max(0, Math.min(255, channels[0])),
+            g: Math.max(0, Math.min(255, channels[1])),
+            b: Math.max(0, Math.min(255, channels[2])),
+        };
+    };
+
+    let scatterColorCurrent = parseScatterColor(getScatterColor());
+
+    const stepScatterColor = () => {
+        const target = parseScatterColor(getScatterColor());
+
+        if (prefersReducedMotion) {
+            scatterColorCurrent = target;
+            return;
+        }
+
+        const smoothing = 0.14;
+        scatterColorCurrent = {
+            r: scatterColorCurrent.r + (target.r - scatterColorCurrent.r) * smoothing,
+            g: scatterColorCurrent.g + (target.g - scatterColorCurrent.g) * smoothing,
+            b: scatterColorCurrent.b + (target.b - scatterColorCurrent.b) * smoothing,
+        };
+    };
+
+    const getScatterColorString = () => `${scatterColorCurrent.r.toFixed(2)}, ${scatterColorCurrent.g.toFixed(2)}, ${scatterColorCurrent.b.toFixed(2)}`;
+
+    const cursor = {
+        x: window.innerWidth / 2,
+        y: window.innerHeight / 2,
+        active: false,
+    };
+
+    let particles = [];
+    let viewportWidth = 0;
+    let viewportHeight = 0;
+    let lastFrameTime = 0;
+    let lastKnownWidth = window.innerWidth;
+    let lastKnownHeight = window.innerHeight;
+    let resizeRaf = 0;
+
+    const getParticleCount = () => {
+        if (window.innerWidth < 560) return 36;
+        if (window.innerWidth < 900) return 58;
+        return 92;
+    };
+
+    const randomVelocity = () => {
+        const angle = Math.random() * Math.PI * 2;
+        const speed = Math.random() * 0.018 + 0.014;
+
+        return {
+            x: Math.cos(angle) * speed,
+            y: Math.sin(angle) * speed,
+        };
+    };
+
+    const makeBaseParticle = () => {
+        const velocity = randomVelocity();
+
+        return {
+            baseX: Math.random() * viewportWidth,
+            baseY: Math.random() * viewportHeight,
+            velocityX: velocity.x,
+            velocityY: velocity.y,
+            driftPhase: Math.random() * Math.PI * 2,
+            driftSpeed: Math.random() * 0.28 + 0.12,
+            radius: Math.random() * 1.8 + 1.1,
+            life: Math.random() * 5000,
+            lifeEnd: Math.random() * 4000 + 7000,
+        };
+    };
+
+    const getLifeFade = (particle) => Math.max(
+        0,
+        Math.min(
+            Math.min(1, particle.life / 1200),
+            Math.min(1, (particle.lifeEnd - particle.life) / 1800),
+        ),
+    );
+
+    const makeParticle = () => {
+        const base = makeBaseParticle();
+
+        return {
+            ...base,
+            x: base.baseX,
+            y: base.baseY,
+            alpha: prefersReducedMotion ? 1 : getLifeFade(base),
+            influence: 0,
+        };
+    };
+
+    const setupCanvas = ({ regenerate = true } = {}) => {
+        const ratio = Math.min(window.devicePixelRatio || 1, 2);
+        viewportWidth = window.innerWidth;
+        viewportHeight = window.innerHeight;
+
+        canvas.width = Math.floor(viewportWidth * ratio);
+        canvas.height = Math.floor(viewportHeight * ratio);
+        canvas.style.width = `${viewportWidth}px`;
+        canvas.style.height = `${viewportHeight}px`;
+        ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+
+        if (regenerate) {
+            particles = Array.from({ length: getParticleCount() }, makeParticle);
+            return;
+        }
+
+        for (const p of particles) {
+            p.baseX = Math.min(viewportWidth + 20, Math.max(-20, p.baseX));
+            p.baseY = Math.min(viewportHeight + 20, Math.max(-20, p.baseY));
+            p.x = p.baseX;
+            p.y = p.baseY;
+        }
+    };
+
+    const draw = (time = 0) => {
+        const delta = lastFrameTime ? Math.min(time - lastFrameTime, 32) : 16;
+        lastFrameTime = time;
+        stepScatterColor();
+        const scatterColor = getScatterColorString();
+
+        ctx.clearRect(0, 0, viewportWidth, viewportHeight);
+
+        const pullRadius = Math.min(220, Math.max(150, viewportWidth * 0.16));
+        const connectionDistance = viewportWidth < 560 ? 95 : 135;
+        const tick = time * 0.001;
+
+        for (const p of particles) {
+            if (!prefersReducedMotion) {
+                p.life += delta;
+                p.baseX += p.velocityX * delta + Math.cos(tick * p.driftSpeed + p.driftPhase) * 0.035;
+                p.baseY += p.velocityY * delta + Math.sin(tick * p.driftSpeed + p.driftPhase) * 0.035;
+
+                if (p.baseX < -20 || p.baseX > viewportWidth + 20) {
+                    p.velocityX *= -1;
+                    p.baseX = Math.min(viewportWidth + 20, Math.max(-20, p.baseX));
+                }
+
+                if (p.baseY < -20 || p.baseY > viewportHeight + 20) {
+                    p.velocityY *= -1;
+                    p.baseY = Math.min(viewportHeight + 20, Math.max(-20, p.baseY));
+                }
+
+                p.alpha += (getLifeFade(p) - p.alpha) * 0.08;
+
+                if (p.life > p.lifeEnd && p.alpha < 0.04) {
+                    const next = makeBaseParticle();
+                    p.baseX = next.baseX;
+                    p.baseY = next.baseY;
+                    p.velocityX = next.velocityX;
+                    p.velocityY = next.velocityY;
+                    p.driftPhase = next.driftPhase;
+                    p.driftSpeed = next.driftSpeed;
+                    p.radius = next.radius;
+                    p.life = 0;
+                    p.lifeEnd = next.lifeEnd;
+                    p.alpha = 0;
+                    p.influence = 0;
+                }
+            } else {
+                p.alpha = 1;
+            }
+
+            const dx = p.baseX - cursor.x;
+            const dy = p.baseY - cursor.y;
+            const distance = Math.hypot(dx, dy);
+            const forceRaw = cursor.active ? Math.max(0, 1 - distance / pullRadius) : 0;
+            const force = forceRaw * forceRaw * (3 - 2 * forceRaw);
+            const push = force * 42;
+            const angle = Math.atan2(dy, dx);
+
+            p.x = p.baseX + Math.cos(angle) * push;
+            p.y = p.baseY + Math.sin(angle) * push;
+            p.influence += (force - p.influence) * 0.08;
+        }
+
+        for (let i = 0; i < particles.length; i += 1) {
+            for (let j = i + 1; j < particles.length; j += 1) {
+                const a = particles[i];
+                const b = particles[j];
+                const distance = Math.hypot(a.x - b.x, a.y - b.y);
+
+                if (distance < connectionDistance) {
+                    const influenceBoost = Math.max(a.influence || 0, b.influence || 0) * 0.34;
+                    const lineAlpha = ((1 - distance / connectionDistance) * 0.2 + influenceBoost) * Math.min(a.alpha, b.alpha);
+
+                    ctx.strokeStyle = `rgba(${scatterColor}, ${lineAlpha})`;
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.moveTo(a.x, a.y);
+                    ctx.lineTo(b.x, b.y);
+                    ctx.stroke();
+                }
+            }
+        }
+
+        for (const p of particles) {
+            const alpha = (0.38 + (p.influence || 0) * 0.48) * p.alpha;
+            const radius = p.radius + (p.influence || 0) * 2.6;
+
+            ctx.fillStyle = `rgba(${scatterColor}, ${alpha})`;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, radius, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        if (!prefersReducedMotion) {
+            requestAnimationFrame(draw);
+        }
+    };
+
+    const isLikelyMobileViewportChange = (nextWidth, nextHeight) => {
+        const widthDiff = Math.abs(nextWidth - lastKnownWidth);
+        const heightDiff = Math.abs(nextHeight - lastKnownHeight);
+
+        return !canUseHoverPointer && widthDiff < 8 && heightDiff > 0;
+    };
+
+    const handleResize = () => {
+        if (resizeRaf) cancelAnimationFrame(resizeRaf);
+
+        resizeRaf = requestAnimationFrame(() => {
+            const nextWidth = window.innerWidth;
+            const nextHeight = window.innerHeight;
+            const shouldRegenerate = !isLikelyMobileViewportChange(nextWidth, nextHeight);
+
+            lastKnownWidth = nextWidth;
+            lastKnownHeight = nextHeight;
+            setupCanvas({ regenerate: shouldRegenerate || particles.length !== getParticleCount() });
+        });
+    };
+
+    setupCanvas();
+    draw();
+
+    if (!prefersReducedMotion) {
+        window.addEventListener("resize", handleResize, { passive: true });
+
+        if (canUseHoverPointer) {
+            window.addEventListener("pointermove", (event) => {
+                if (event.pointerType && event.pointerType !== "mouse") return;
+                cursor.x = event.clientX;
+                cursor.y = event.clientY;
+                cursor.active = true;
+            }, { passive: true });
+
+            window.addEventListener("pointerleave", () => {
+                cursor.active = false;
+            });
+        }
+    }
+})();
