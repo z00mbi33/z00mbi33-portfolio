@@ -36,6 +36,100 @@
         });
     }
 
+    const navToggle = document.querySelector(".nav-toggle");
+    const mobileNav = document.getElementById("mobile-nav");
+    if (navToggle && mobileNav) {
+        const setOpen = (open) => {
+            navToggle.setAttribute("aria-expanded", String(open));
+            navToggle.textContent = open ? "Close" : "Menu";
+            mobileNav.classList.toggle("is-open", open);
+        };
+        navToggle.addEventListener("click", () => {
+            const isOpen = mobileNav.classList.contains("is-open");
+            setOpen(!isOpen);
+        });
+        mobileNav.addEventListener("click", (event) => {
+            const link = event.target.closest("a[href^='#']");
+            if (!link) return;
+            event.preventDefault();
+            const target = document.querySelector(link.getAttribute("href"));
+            setOpen(false);
+            if (!target) return;
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    const nav = document.querySelector(".nav");
+                    const navHeight = nav ? nav.offsetHeight : 72;
+                    const top = target.getBoundingClientRect().top + window.scrollY - navHeight - 8;
+                    window.scrollTo({ top, behavior: "instant" });
+                    history.pushState(null, "", link.getAttribute("href"));
+                });
+            });
+        });
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape" && mobileNav.classList.contains("is-open")) {
+                setOpen(false);
+                navToggle.focus();
+            }
+        });
+        window.addEventListener("resize", () => {
+            if (window.innerWidth > 900 && mobileNav.classList.contains("is-open")) {
+                setOpen(false);
+            }
+        }, { passive: true });
+    }
+
+    const navLinks = document.querySelectorAll("[data-nav-link]");
+    const navSections = [
+        document.getElementById("about"),
+        document.getElementById("services"),
+        document.getElementById("stack"),
+        document.getElementById("work"),
+        document.getElementById("contact"),
+    ].filter(Boolean);
+    if (navLinks.length && navSections.length) {
+        const setActiveNav = (id) => {
+            navLinks.forEach((link) => {
+                link.classList.toggle("is-active", link.getAttribute("href") === `#${id}`);
+            });
+        };
+        const navObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    setActiveNav(entry.target.id);
+                }
+            });
+        }, { rootMargin: "-80px 0px -60% 0px", threshold: 0 });
+        navSections.forEach((section) => navObserver.observe(section));
+    }
+
+    const brand = document.querySelector(".brand");
+    if (brand && navToggle && mobileNav) {
+        brand.addEventListener("click", () => {
+            if (mobileNav.classList.contains("is-open")) {
+                const setOpen = (open) => {
+                    navToggle.setAttribute("aria-expanded", String(open));
+                    navToggle.textContent = open ? "Close" : "Menu";
+                    mobileNav.classList.toggle("is-open", open);
+                };
+                setOpen(false);
+            }
+        });
+    }
+
+    const revealTargets = document.querySelectorAll(".card, .explore-item, .timeline-item, .panel");
+    const prefersReducedMotionGlobal = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (revealTargets.length && !prefersReducedMotionGlobal) {
+        revealTargets.forEach((el) => el.classList.add("reveal"));
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("is-visible");
+                }
+            });
+        }, { rootMargin: "0px 0px -40px 0px", threshold: 0.1 });
+        revealTargets.forEach((el) => revealObserver.observe(el));
+    }
+
     const canvas = document.getElementById("scatter-background");
     const ctx = canvas && canvas.getContext("2d");
 

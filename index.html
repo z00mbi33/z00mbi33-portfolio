@@ -1,347 +1,484 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Virgian Listianto | Portfolio</title>
-    <meta name="description" content="Portfolio of Virgian Listianto, a fullstack developer based in Surabaya, Indonesia.">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
-    <link rel="stylesheet" href="assets/custom.css">
-</head>
-<body>
+    <meta
+      name="description"
+      content="Portfolio of Virgian Listianto, a fullstack developer focused on backend APIs, Laravel, NestJS, ExpressJS, and workflow automation."
+    />
+    <link rel="canonical" href="https://z0mbi33.net/" />
+    <meta property="og:title" content="Virgian Listianto | Portfolio" />
+    <meta property="og:description" content="Fullstack developer focused on backend APIs, web systems, and workflow automation." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://z0mbi33.net/" />
+    <meta property="og:image" content="https://z0mbi33.net/assets/logo.png" />
+    <meta property="og:site_name" content="Virgian Listianto Portfolio" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Virgian Listianto | Portfolio" />
+    <meta name="twitter:description" content="Fullstack developer focused on backend APIs, web systems, and workflow automation." />
+    <meta name="twitter:image" content="https://z0mbi33.net/assets/logo.png" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Virgian Listianto",
+        "url": "https://z0mbi33.net/",
+        "jobTitle": "Fullstack Developer",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Surabaya",
+          "addressCountry": "Indonesia"
+        },
+        "sameAs": [
+          "https://linkedin.com/in/virgianlistianto",
+          "https://github.com/z00mbi33"
+        ],
+        "knowsAbout": [
+          "Backend APIs",
+          "Laravel",
+          "NestJS",
+          "ExpressJS",
+          "Workflow Automation",
+          "n8n",
+          "Telegram Bot API"
+        ]
+      }
+    </script>
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="assets/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="assets/favicon-16x16.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="assets/apple-touch-icon.png"
+    />
+    <link rel="stylesheet" href="assets/custom.css" />
+  </head>
+  <body>
     <canvas id="scatter-background" aria-hidden="true"></canvas>
 
     <nav class="nav" aria-label="Primary navigation">
-        <div class="container nav-inner">
-            <a class="brand" href="#top">Virgian Listianto</a>
-            <div class="nav-links">
-                <a href="#about">About</a>
-                <a href="#services">Services</a>
-                <a href="#stack">Stack</a>
-                <a href="#work">Work</a>
-                <a href="#contact">Contact</a>
-            </div>
+      <div class="container nav-inner">
+        <a class="brand" href="#top">Virgian Listianto</a>
+        <div class="nav-links">
+          <a href="#about" data-nav-link>About</a>
+          <a href="#services" data-nav-link>Services</a>
+          <a href="#stack" data-nav-link>Stack</a>
+          <a href="#work" data-nav-link>Work</a>
+          <a href="#contact" data-nav-link>Contact</a>
         </div>
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+        >
+          Menu
+        </button>
+      </div>
+      <div id="mobile-nav" class="mobile-nav">
+        <div class="container">
+          <a href="#about" data-nav-link>About</a>
+          <a href="#services" data-nav-link>Services</a>
+          <a href="#stack" data-nav-link>Stack</a>
+          <a href="#work" data-nav-link>Work</a>
+          <a href="#contact" data-nav-link>Contact</a>
+        </div>
+      </div>
     </nav>
 
     <main id="top">
-        <section class="hero container">
-            <div>
-                <h1>Virgian<br>Listianto</h1>
-                <p class="hero-tagline">I build backend APIs, fullstack web systems, and practical automation workflows.</p>
-                <div class="hero-actions">
-                    <div class="role-card">
-                        <strong>Fullstack Developer</strong>
-                    </div>
-                </div>
-                <div class="hero-ctas">
-                    <a href="#work" class="cta-btn cta-primary">Explore Work</a>
-                    <a href="#contact" class="cta-btn cta-secondary">Connect</a>
-                </div>
+      <section class="hero container">
+        <div>
+          <h1>Virgian<br />Listianto</h1>
+          <div class="hero-actions">
+            <div class="role-card">
+              <strong>Fullstack Developer</strong>
             </div>
-        </section>
-
-        <div class="container stats-row">
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <span class="stat-value">3.71</span>
-                    <span class="stat-label">GPA</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-value">2022</span>
-                    <span class="stat-label">Certification</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-value">APIs</span>
-                    <span class="stat-label">Backend</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-value">Web</span>
-                    <span class="stat-label">Fullstack</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-value">SBY</span>
-                    <span class="stat-label">Based</span>
-                </div>
-            </div>
+          </div>
         </div>
+      </section>
 
-        <div class="strip" aria-hidden="true">
-            <div class="strip-track">
-                <span>Web Development</span><span>*</span>
-                <span>API Backend</span><span>*</span>
-                <span>Laravel</span><span>*</span>
-                <span>NestJS</span><span>*</span>
-                <span>ExpressJS</span><span>*</span>
-                <span>Fullstack</span><span>*</span>
-                <span>Web Development</span><span>*</span>
-                <span>API Backend</span><span>*</span>
-                <span>Laravel</span><span>*</span>
-                <span>NestJS</span><span>*</span>
-                <span>ExpressJS</span><span>*</span>
-                <span>Fullstack</span><span>*</span>
-            </div>
+      <div class="strip" aria-hidden="true">
+        <div class="strip-track">
+          <span>Web Development</span><span>*</span> <span>API Backend</span
+          ><span>*</span> <span>Laravel</span><span>*</span> <span>NestJS</span
+          ><span>*</span> <span>ExpressJS</span><span>*</span>
+          <span>Fullstack</span><span>*</span> <span>Web Development</span
+          ><span>*</span> <span>API Backend</span><span>*</span>
+          <span>Laravel</span><span>*</span> <span>NestJS</span><span>*</span>
+          <span>ExpressJS</span><span>*</span> <span>Fullstack</span
+          ><span>*</span>
         </div>
+      </div>
 
-        <section id="about" class="section">
-            <div class="container split">
+      <section id="about" class="section">
+        <div class="container split">
+          <div>
+            <div class="section-title">
+              <h2>About<br />Me</h2>
+              <div class="meta-list">
+                <p><span class="meta-label">Status</span><strong>Active</strong></p>
+                <p><span class="meta-label">Location</span><strong>Surabaya, Indonesia</strong></p>
+                <p><span class="meta-label">Focus</span><strong>Backend APIs / Fullstack Web</strong></p>
+                <p><span class="meta-label">Exploring</span><strong>AI / n8n / Go</strong></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <p class="intro">
+              I am <strong>Virgian Listianto</strong>, an Information Systems
+              graduate focused on practical web development, backend APIs, and
+              fullstack application work.
+            </p>
+            <p class="intro-small">
+              My recent work includes developing API backends with NestJS and
+              ExpressJS, maintaining Laravel-based web systems, and building
+              integrations for real-time notifications and operational
+              workflows. I am also interested in AI integration and n8n
+              automation, especially for connecting existing systems, reducing
+              repetitive tasks, and improving business processes.
+            </p>
+
+            <div class="data-block">
+              <p class="block-heading">Education</p>
+              <div class="education-row">
                 <div>
-                    <div class="section-title">
-                        <span class="section-num">01</span><h2>About<br>Me</h2>
-                        <div class="meta-list">
-                            <p>Status: Active</p>
-                            <p>Loc: Surabaya, Indonesia</p>
-                            <p>Focus: Web Development</p>
-                        </div>
-                    </div>
+                  <h3>Bachelor of Information Systems</h3>
+                  <p>Telkom University Surabaya</p>
+                  <p><strong>GPA:</strong> 3.71</p>
                 </div>
-
-                <div class="panel">
-                    <p class="intro">
-                        I am <strong>Virgian Listianto</strong>, an Information Systems graduate focused on practical web development, backend APIs, and fullstack application work.
-                    </p>
-                    <p class="intro-small">
-                        My recent work includes developing API backends with NestJS and ExpressJS, maintaining Laravel-based web systems, and building integrations for real-time notifications and operational workflows. I am also interested in AI integration and n8n automation, especially for connecting existing systems, reducing repetitive tasks, and improving business processes.
-                    </p>
-
-                    <div class="data-block">
-                        <p class="block-heading">Education</p>
-                        <div class="education-row">
-                            <div>
-                                <h3>Bachelor of Information Systems</h3>
-                                <p>Telkom University Surabaya</p>
-                                <p><strong>GPA:</strong> 3.71</p>
-                            </div>
-                            <span class="date">2019 - 2023</span>
-                        </div>
-                    </div>
-                </div>
+                <span class="date">2019 - 2023</span>
+              </div>
             </div>
-        </section>
-
-        <section id="services" class="section">
-            <div class="container">
-                <div class="timeline-head">
-                    <span class="section-num">02</span><h2>Services</h2>
-                    <span class="date">Core Work</span>
-                </div>
-
-                <div class="cards">
-                    <article class="card">
-                        <span class="card-num">01</span>
-                        <h3>API Backend Development</h3>
-                        <p>Developing and maintaining backend APIs using NestJS and ExpressJS, while building robust, scalable REST APIs with proper authentication, rate limiting, and comprehensive documentation.</p>
-                    </article>
-                    <article class="card">
-                        <span class="card-num">02</span>
-                        <h3>Fullstack Web Development</h3>
-                        <p>Building web-based systems that connect clear user flows with reliable application logic.</p>
-                    </article>
-                    <article class="card">
-                        <span class="card-num">03</span>
-                        <h3>System Integration</h3>
-                        <p>Integrating supporting tools such as Telegram bots, AI services, and n8n automation for real-time notifications and operational workflows.</p>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <section id="stack" class="section">
-            <div class="container">
-                <span class="section-num">03</span><h2>Tech<br>Stack</h2>
-                <div class="stack-groups">
-                    <div class="stack-group">
-                        <p class="stack-label">Backend</p>
-                        <div class="stack-pills">
-                            <span class="pill">Laravel</span>
-                            <span class="pill">NestJS</span>
-                            <span class="pill">ExpressJS</span>
-                            <span class="pill">Node.js</span>
-                        </div>
-                    </div>
-                    <div class="stack-group">
-                        <p class="stack-label">Frontend</p>
-                        <div class="stack-pills">
-                            <span class="pill">HTML</span>
-                            <span class="pill">CSS</span>
-                            <span class="pill">JavaScript</span>
-                        </div>
-                    </div>
-                    <div class="stack-group">
-                        <p class="stack-label">Database &amp; Tools</p>
-                        <div class="stack-pills">
-                            <span class="pill">MySQL</span>
-                            <span class="pill">SQL Server</span>
-                            <span class="pill">Git</span>
-                            <span class="pill">Telegram Bot API</span>
-                            <span class="pill">n8n</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="exploring" class="section">
-            <div class="container">
-                <span class="section-num">04</span><h2>Currently<br>Exploring</h2>
-                <div class="explore-grid">
-                    <div class="explore-item">
-                        <span class="explore-icon" aria-hidden="true">&rarr;</span>
-                        <span>AI Integration</span>
-                    </div>
-                    <div class="explore-item">
-                        <span class="explore-icon" aria-hidden="true">&rarr;</span>
-                        <span>n8n Automation</span>
-                    </div>
-                    <div class="explore-item">
-                        <span class="explore-icon" aria-hidden="true">&rarr;</span>
-                        <span>Backend API Design</span>
-                    </div>
-                    <div class="explore-item">
-                        <span class="explore-icon" aria-hidden="true">&rarr;</span>
-                        <span>System Integration</span>
-                    </div>
-                    <div class="explore-item">
-                        <span class="explore-icon" aria-hidden="true">&rarr;</span>
-                        <span>Workflow Automation</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="work" class="section">
-            <div class="container">
-                <span class="section-num">05</span><h2>Work History</h2>
-
-                <div class="timeline">
-                    <article class="timeline-item">
-                        <div class="timeline-head">
-                            <h3>Fullstack Developer</h3>
-                            <span class="date">May 2025 - Present</span>
-                        </div>
-                        <h4>PT. Tekno Data Solusindo</h4>
-                        <ul>
-                            <li>Developed and maintained API backends using NestJS and ExpressJS.</li>
-                            <li>Developed and maintained a transport management system in Laravel.</li>
-                        </ul>
-                    </article>
-
-                    <article class="timeline-item">
-                        <div class="timeline-head">
-                            <h3>Web Development Project</h3>
-                            <span class="date">Oct 2023 - Mar 2024</span>
-                        </div>
-                        <h4>PT. Telkom Indonesia Witel Surabaya Selatan</h4>
-                        <ul>
-                            <li>Participated in a sales reporting system development project to build a web-based application.</li>
-                            <li>Integrated a Telegram bot into the web application to support real-time notifications.</li>
-                        </ul>
-                    </article>
-
-                    <article class="timeline-item">
-                        <div class="timeline-head">
-                            <h3>Data Management Intern</h3>
-                            <span class="date">Aug 2022 - Sep 2022</span>
-                        </div>
-                        <h4>PT. Telkom Indonesia Witel Surabaya Selatan</h4>
-                        <ul>
-                            <li>Completed a two-month practical work program as a developer in the data management division.</li>
-                            <li>Designed and developed a Telegram chatbot as an inventory management system to help technicians and helpdesk staff update field data.</li>
-                        </ul>
-                    </article>
-
-                    <article class="timeline-item">
-                        <div class="timeline-head">
-                            <h3>Programming Practicum Assistant</h3>
-                            <span class="date">2020 - 2022</span>
-                        </div>
-                        <h4>Institut Teknologi Telkom Surabaya</h4>
-                        <ul>
-                            <li>Assisted lecturers in teaching students based on weekly learning modules and guided students through assignments.</li>
-                            <li>Assessed students based on attendance, weekly assignments, and exams.</li>
-                        </ul>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <div class="strip" aria-hidden="true">
-            <div class="strip-track">
-                <span>Junior Web Developer</span><span>*</span>
-                <span>Inixindo 2022</span><span>*</span>
-                <span>Junior Web Developer</span><span>*</span>
-                <span>Inixindo 2022</span><span>*</span>
-                <span>Junior Web Developer</span><span>*</span>
-                <span>Inixindo 2022</span><span>*</span>
-            </div>
+          </div>
         </div>
+      </section>
 
-        <section class="section certification-section">
-            <div class="container split">
-                <div>
-                    <div class="section-title">
-                        <span class="section-num">06</span><h2>Certification</h2>
-                    </div>
-                </div>
-                <div class="panel">
-                    <div class="cert-row">
-                        <div>
-                            <h3>Junior Web Developer</h3>
-                            <p>Inixindo</p>
-                        </div>
-                        <span class="date">2022</span>
-                    </div>
-                </div>
+      <section id="services" class="section">
+        <div class="container">
+          <div class="timeline-head">
+            <h2>Services</h2>
+            <span class="date">Core Work</span>
+          </div>
+
+          <div class="cards">
+            <article class="card">
+              <h3>API Backend Development</h3>
+              <p>
+                Developing and maintaining backend APIs using NestJS and
+                ExpressJS, while building robust, scalable REST APIs with proper
+                authentication, rate limiting, and comprehensive documentation.
+              </p>
+            </article>
+            <article class="card">
+              <h3>Fullstack Web Development</h3>
+              <p>
+                Building web-based systems that connect clear user flows with
+                reliable application logic.
+              </p>
+            </article>
+            <article class="card">
+              <h3>System Integration</h3>
+              <p>
+                Integrating supporting tools such as Telegram bots, AI services,
+                and n8n automation for real-time notifications and operational
+                workflows.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="stack" class="section">
+        <div class="container">
+          <h2>Tech<br />Stack</h2>
+          <div class="cards stack-cards">
+            <article class="card stack-card">
+              <p class="block-heading">Languages</p>
+              <ul class="stack-list">
+                <li>JavaScript / TypeScript</li>
+                <li>PHP / Python</li>
+                <li>SQL / Bash</li>
+                <li>HTML / CSS</li>
+              </ul>
+            </article>
+            <article class="card stack-card">
+              <p class="block-heading">Frameworks &amp; Runtime</p>
+              <ul class="stack-list">
+                <li>Node.js / Express.js</li>
+                <li>NestJS</li>
+                <li>Laravel</li>
+              </ul>
+            </article>
+            <article class="card stack-card">
+              <p class="block-heading">Database &amp; Infra</p>
+              <ul class="stack-list">
+                <li>PostgreSQL / MySQL</li>
+                <li>SQL Server</li>
+                <li>Docker / Git</li>
+              </ul>
+            </article>
+            <article class="card stack-card">
+              <p class="block-heading">Integration &amp; Automation</p>
+              <ul class="stack-list">
+                <li>Telegram Bot API</li>
+                <li>n8n</li>
+                <li>AI Services</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="exploring" class="section">
+        <div class="container">
+          <h2>Currently<br />Exploring</h2>
+          <div class="explore-grid">
+            <div class="explore-item">
+              <span class="explore-icon" aria-hidden="true">&rarr;</span>
+              <span>AI Integration</span>
             </div>
-        </section>
+            <div class="explore-item">
+              <span class="explore-icon" aria-hidden="true">&rarr;</span>
+              <span>n8n Automation</span>
+            </div>
+            <div class="explore-item">
+              <span class="explore-icon" aria-hidden="true">&rarr;</span>
+              <span>Workflow Automation</span>
+            </div>
+            <div class="explore-item">
+              <span class="explore-icon" aria-hidden="true">&rarr;</span>
+              <span>GO Language</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="work" class="section">
+        <div class="container">
+          <h2>Work History</h2>
+
+          <div class="timeline">
+            <article class="timeline-item">
+              <div class="timeline-head">
+                <h3>Fullstack Developer</h3>
+                <span class="date">May 2025 - Present</span>
+              </div>
+              <h4>PT. Tekno Data Solusindo</h4>
+              <div class="tag-row">
+                <span>Laravel</span>
+                <span>NestJS</span>
+                <span>ExpressJS</span>
+                <span>Backend APIs</span>
+                <span>Transport System</span>
+              </div>
+              <ul>
+                <li>
+                  Developed and maintained API backends using NestJS and
+                  ExpressJS.
+                </li>
+                <li>
+                  Developed and maintained a transport management system in
+                  Laravel.
+                </li>
+              </ul>
+            </article>
+
+            <article class="timeline-item">
+              <div class="timeline-head">
+                <h3>Web Development Project</h3>
+                <span class="date">Oct 2023 - Mar 2024</span>
+              </div>
+              <h4>PT. Telkom Indonesia Witel Surabaya Selatan</h4>
+              <div class="tag-row">
+                <span>Web App</span>
+                <span>Sales Reporting</span>
+                <span>Telegram Bot</span>
+                <span>Real-time Notification</span>
+              </div>
+              <ul>
+                <li>
+                  Participated in a sales reporting system development project
+                  to build a web-based application.
+                </li>
+                <li>
+                  Integrated a Telegram bot into the web application to support
+                  real-time notifications.
+                </li>
+              </ul>
+            </article>
+
+            <article class="timeline-item">
+              <div class="timeline-head">
+                <h3>Data Management Intern</h3>
+                <span class="date">Aug 2022 - Sep 2022</span>
+              </div>
+              <h4>PT. Telkom Indonesia Witel Surabaya Selatan</h4>
+              <div class="tag-row">
+                <span>Telegram Chatbot</span>
+                <span>Inventory Workflow</span>
+                <span>Field Data</span>
+                <span>Helpdesk Support</span>
+              </div>
+              <ul>
+                <li>
+                  Completed a two-month practical work program as a developer in
+                  the data management division.
+                </li>
+                <li>
+                  Designed and developed a Telegram chatbot as an inventory
+                  management system to help technicians and helpdesk staff
+                  update field data.
+                </li>
+              </ul>
+            </article>
+
+            <article class="timeline-item">
+              <div class="timeline-head">
+                <h3>Programming Practicum Assistant</h3>
+                <span class="date">2020 - 2022</span>
+              </div>
+              <h4>Institut Teknologi Telkom Surabaya</h4>
+              <div class="tag-row">
+                <span>Teaching Assistant</span>
+                <span>Programming</span>
+                <span>Assessment</span>
+                <span>Student Guidance</span>
+              </div>
+              <ul>
+                <li>
+                  Assisted lecturers in teaching students based on weekly
+                  learning modules and guided students through assignments.
+                </li>
+                <li>
+                  Assessed students based on attendance, weekly assignments, and
+                  exams.
+                </li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <div class="strip" aria-hidden="true">
+        <div class="strip-track">
+          <span>Junior Web Developer</span><span>*</span>
+          <span>Inixindo 2022</span><span>*</span>
+          <span>Junior Web Developer</span><span>*</span>
+          <span>Inixindo 2022</span><span>*</span>
+          <span>Junior Web Developer</span><span>*</span>
+          <span>Inixindo 2022</span><span>*</span>
+        </div>
+      </div>
+
+      <section class="section certification-section">
+        <div class="container split">
+          <div>
+            <div class="section-title">
+              <h2>Certification</h2>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="cert-row">
+              <div>
+                <h3>Junior Web Developer</h3>
+                <p>Inixindo</p>
+              </div>
+              <span class="date">2022</span>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
     <section id="contact" class="contact-section">
-        <div class="container">
-            <p class="contact-kicker">07 — Ready to connect?</p>
-            <p class="talk">Let's Talk</p>
+      <div class="container">
+        <p class="contact-kicker">Ready to connect?</p>
+        <p class="talk">Let's Talk</p>
 
-            <div class="contact-links" aria-label="Social links">
-                <a class="contact-pill" href="https://linkedin.com/in/virgianlistianto" target="_blank" rel="noreferrer">LinkedIn</a>
-                <a class="contact-pill" href="https://github.com/z00mbi33" target="_blank" rel="noreferrer">GitHub</a>
-            </div>
+        <div class="contact-links" aria-label="Social links">
+          <a
+            class="contact-pill"
+            href="https://linkedin.com/in/virgianlistianto"
+            target="_blank"
+            rel="noreferrer"
+            >LinkedIn</a
+          >
+          <a
+            class="contact-pill"
+            href="https://github.com/z00mbi33"
+            target="_blank"
+            rel="noreferrer"
+            >GitHub</a
+          >
         </div>
+      </div>
     </section>
 
     <footer class="footer">
-        <div class="container footer-bottom">
-            <span>&copy; 2026 Virgian Listianto</span>
-            <span>v1.0</span>
-        </div>
+      <div class="container footer-bottom">
+        <span>&copy; 2026 Virgian Listianto</span>
+        <span>v1.0</span>
+      </div>
     </footer>
 
-    <button class="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false">
-        <span class="theme-toggle-icon theme-toggle-icon-moon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" role="presentation" focusable="false">
-                <path d="M19.9001 2.30719C19.7392 1.8976 19.1616 1.8976 19.0007 2.30719L18.5703 3.40247C18.5212 3.52752 18.4226 3.62651 18.298 3.67583L17.2067 4.1078C16.7986 4.26934 16.7986 4.849 17.2067 5.01054L18.298 5.44252C18.4226 5.49184 18.5212 5.59082 18.5703 5.71587L19.0007 6.81115C19.1616 7.22074 19.7392 7.22074 19.9001 6.81116L20.3305 5.71587C20.3796 5.59082 20.4782 5.49184 20.6028 5.44252L21.6941 5.01054C22.1022 4.849 22.1022 4.26934 21.6941 4.1078L20.6028 3.67583C20.4782 3.62651 20.3796 3.52752 20.3305 3.40247L19.9001 2.30719Z" fill="currentColor" />
-                <path d="M16.0328 8.12967C15.8718 7.72009 15.2943 7.72009 15.1333 8.12967L14.9764 8.52902C14.9273 8.65407 14.8287 8.75305 14.7041 8.80237L14.3062 8.95987C13.8981 9.12141 13.8981 9.70107 14.3062 9.86261L14.7041 10.0201C14.8287 10.0694 14.9273 10.1684 14.9764 10.2935L15.1333 10.6928C15.2943 11.1024 15.8718 11.1024 16.0328 10.6928L16.1897 10.2935C16.2388 10.1684 16.3374 10.0694 16.462 10.0201L16.8599 9.86261C17.268 9.70107 17.268 9.12141 16.8599 8.95987L16.462 8.80237C16.3374 8.75305 16.2388 8.65407 16.1897 8.52902L16.0328 8.12967Z" fill="currentColor" />
-                <path d="M12 22C17.5228 22 22 17.5228 22 12C22 11.5373 21.3065 11.4608 21.0672 11.8568C19.9289 13.7406 17.8615 15 15.5 15C11.9101 15 9 12.0899 9 8.5C9 6.13845 10.2594 4.07105 12.1432 2.93276C12.5392 2.69347 12.4627 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="currentColor" />
-            </svg>
-        </span>
-        <span class="theme-toggle-icon theme-toggle-icon-sun" aria-hidden="true">
-            <svg viewBox="0 0 24 24" role="presentation" focusable="false">
-                <circle cx="12" cy="12" r="4" />
-                <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
-                    <path d="M12 2.2v2.2" />
-                    <path d="M12 19.6v2.2" />
-                    <path d="M2.2 12h2.2" />
-                    <path d="M19.6 12h2.2" />
-                    <path d="M5.1 5.1l1.6 1.6" />
-                    <path d="M17.3 17.3l1.6 1.6" />
-                    <path d="M17.3 6.7l1.6-1.6" />
-                    <path d="M5.1 18.9l1.6-1.6" />
-                </g>
-            </svg>
-        </span>
+    <button
+      class="theme-toggle"
+      type="button"
+      aria-label="Switch to dark mode"
+      aria-pressed="false"
+    >
+      <span class="theme-toggle-icon theme-toggle-icon-moon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" role="presentation" focusable="false">
+          <path
+            d="M19.9001 2.30719C19.7392 1.8976 19.1616 1.8976 19.0007 2.30719L18.5703 3.40247C18.5212 3.52752 18.4226 3.62651 18.298 3.67583L17.2067 4.1078C16.7986 4.26934 16.7986 4.849 17.2067 5.01054L18.298 5.44252C18.4226 5.49184 18.5212 5.59082 18.5703 5.71587L19.0007 6.81115C19.1616 7.22074 19.7392 7.22074 19.9001 6.81116L20.3305 5.71587C20.3796 5.59082 20.4782 5.49184 20.6028 5.44252L21.6941 5.01054C22.1022 4.849 22.1022 4.26934 21.6941 4.1078L20.6028 3.67583C20.4782 3.62651 20.3796 3.52752 20.3305 3.40247L19.9001 2.30719Z"
+            fill="currentColor"
+          />
+          <path
+            d="M16.0328 8.12967C15.8718 7.72009 15.2943 7.72009 15.1333 8.12967L14.9764 8.52902C14.9273 8.65407 14.8287 8.75305 14.7041 8.80237L14.3062 8.95987C13.8981 9.12141 13.8981 9.70107 14.3062 9.86261L14.7041 10.0201C14.8287 10.0694 14.9273 10.1684 14.9764 10.2935L15.1333 10.6928C15.2943 11.1024 15.8718 11.1024 16.0328 10.6928L16.1897 10.2935C16.2388 10.1684 16.3374 10.0694 16.462 10.0201L16.8599 9.86261C17.268 9.70107 17.268 9.12141 16.8599 8.95987L16.462 8.80237C16.3374 8.75305 16.2388 8.65407 16.1897 8.52902L16.0328 8.12967Z"
+            fill="currentColor"
+          />
+          <path
+            d="M12 22C17.5228 22 22 17.5228 22 12C22 11.5373 21.3065 11.4608 21.0672 11.8568C19.9289 13.7406 17.8615 15 15.5 15C11.9101 15 9 12.0899 9 8.5C9 6.13845 10.2594 4.07105 12.1432 2.93276C12.5392 2.69347 12.4627 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+      <span class="theme-toggle-icon theme-toggle-icon-sun" aria-hidden="true">
+        <svg viewBox="0 0 24 24" role="presentation" focusable="false">
+          <circle cx="12" cy="12" r="4" />
+          <g
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+          >
+            <path d="M12 2.2v2.2" />
+            <path d="M12 19.6v2.2" />
+            <path d="M2.2 12h2.2" />
+            <path d="M19.6 12h2.2" />
+            <path d="M5.1 5.1l1.6 1.6" />
+            <path d="M17.3 17.3l1.6 1.6" />
+            <path d="M17.3 6.7l1.6-1.6" />
+            <path d="M5.1 18.9l1.6-1.6" />
+          </g>
+        </svg>
+      </span>
     </button>
 
     <script src="assets/custom.js" defer></script>
-</body>
+  </body>
 </html>
