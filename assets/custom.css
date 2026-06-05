@@ -59,7 +59,10 @@ body,
 .role-card,
 .contact-pill,
 .theme-toggle,
-.timeline-item::before {
+.timeline-item::before,
+.cta-btn,
+.pill,
+.explore-item {
     transition: background-color 220ms ease, color 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
 }
 
@@ -78,7 +81,14 @@ ul,
 .talk,
 .contact-kicker,
 .footer-bottom,
-.theme-toggle-icon {
+.theme-toggle-icon,
+.hero-tagline,
+.stat-value,
+.stat-label,
+.section-num,
+.card-num,
+.stack-label,
+.explore-icon {
     transition: color 220ms ease, border-color 220ms ease, opacity 220ms ease, transform 220ms ease;
 }
 
@@ -579,6 +589,9 @@ li + li {
     .contact-pill,
     .theme-toggle,
     .timeline-item::before,
+    .cta-btn,
+    .pill,
+    .explore-item,
     h1,
     h2,
     h3,
@@ -594,7 +607,14 @@ li + li {
     .talk,
     .contact-kicker,
     .footer-bottom,
-    .theme-toggle-icon {
+    .theme-toggle-icon,
+    .hero-tagline,
+    .stat-value,
+    .stat-label,
+    .section-num,
+    .card-num,
+    .stack-label,
+    .explore-icon {
         transition: none;
     }
 }
@@ -722,5 +742,294 @@ li + li {
 
     .footer {
         padding-bottom: 88px;
+    }
+}
+
+/* ── Hero tagline ────────────────────────────────── */
+
+.hero-tagline {
+    max-width: 620px;
+    margin: 0 auto 32px;
+    color: var(--muted);
+    font-size: clamp(1rem, 2.2vw, 1.25rem);
+    font-weight: 600;
+    line-height: 1.55;
+    letter-spacing: -0.01em;
+}
+
+/* ── Hero CTA buttons ───────────────────────────── */
+
+.hero-ctas {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 28px;
+}
+
+.cta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 150px;
+    border: 1px solid var(--primary);
+    border-radius: 999px;
+    padding: 13px 24px;
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background-color 200ms ease, color 200ms ease, transform 160ms ease;
+}
+
+.cta-btn:hover {
+    text-decoration: none;
+    transform: translateY(-1px);
+}
+
+.cta-primary {
+    background: var(--primary);
+    color: #ffffff;
+}
+
+.cta-primary:hover {
+    background: var(--primary);
+    opacity: 0.92;
+}
+
+.cta-secondary {
+    background: transparent;
+    color: var(--primary);
+}
+
+.cta-secondary:hover {
+    background: var(--primary);
+    color: #ffffff;
+}
+
+/* ── Stats row ──────────────────────────────────── */
+
+.stats-row {
+    padding: 52px 0 28px;
+}
+
+.stats-grid {
+    display: flex;
+    justify-content: center;
+    gap: 44px;
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.stat-value {
+    color: var(--primary);
+    font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+    font-weight: 900;
+    letter-spacing: -0.04em;
+}
+
+.stat-label {
+    color: var(--muted);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+/* ── Section numbering ──────────────────────────── */
+
+.section-num {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--muted);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    opacity: 0.7;
+}
+
+/* ── Card polish ────────────────────────────────── */
+
+.card-num {
+    display: block;
+    margin-bottom: 10px;
+    color: var(--primary);
+    font-size: 0.76rem;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    opacity: 0.55;
+}
+
+.card {
+    transition: transform 200ms ease, border-color 200ms ease, box-shadow 200ms ease, background-color 220ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .card:hover {
+        transform: translateY(-4px);
+        border-color: var(--primary);
+        box-shadow: 0 12px 32px rgba(20, 52, 95, 0.08);
+    }
+
+    [data-theme="dark"] .card:hover {
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
+    }
+}
+
+/* ── Tech Stack ─────────────────────────────────── */
+
+.stack-groups {
+    display: flex;
+    flex-direction: column;
+    gap: 34px;
+    margin-top: 18px;
+}
+
+.stack-group {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+}
+
+.stack-label {
+    flex: 0 0 auto;
+    min-width: 200px;
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.86rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.stack-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.pill {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 8px 18px;
+    color: var(--text);
+    font-size: 0.82rem;
+    font-weight: 700;
+    transition: border-color 200ms ease, background-color 200ms ease, color 200ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .pill:hover {
+        border-color: var(--primary);
+        background: var(--primary-soft);
+        color: var(--primary);
+    }
+}
+
+/* ── Currently Exploring ────────────────────────── */
+
+.explore-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.explore-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid var(--line);
+    padding: 16px 20px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    transition: border-color 200ms ease, background-color 220ms ease;
+}
+
+.explore-icon {
+    flex: 0 0 auto;
+    color: var(--primary);
+    font-size: 1.1rem;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .explore-item:hover {
+        border-color: var(--primary);
+        background: var(--primary-soft);
+    }
+}
+
+/* ── Responsive: new sections ───────────────────── */
+
+@media (max-width: 900px) {
+    .hero-ctas {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cta-btn {
+        width: 100%;
+        max-width: 320px;
+    }
+
+    .stats-grid {
+        gap: 28px;
+    }
+
+    .stack-group {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .stack-label {
+        min-width: 0;
+    }
+
+    .explore-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 560px) {
+    .hero-tagline {
+        margin-bottom: 24px;
+    }
+
+    .stats-row {
+        padding: 36px 0 18px;
+    }
+
+    .stats-grid {
+        gap: 18px;
+    }
+
+    .stat-value {
+        font-size: 1.35rem;
+    }
+
+    .stat-label {
+        font-size: 0.68rem;
+    }
+
+    .section-num {
+        margin-bottom: 2px;
+        font-size: 0.72rem;
+    }
+
+    .stack-groups {
+        gap: 24px;
+    }
+
+    .explore-item {
+        padding: 14px 16px;
     }
 }
