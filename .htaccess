@@ -31,3 +31,13 @@ ErrorDocument 504 /504.html
     AddType application/javascript .js
     AddType image/png .png
 </IfModule>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Route any /task sub-paths directly to Laravel's entry point
+    RewriteCond %{REQUEST_URI} ^/task/
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^task/(.*)$ task/index.php [L,QSA]
+</IfModule>
