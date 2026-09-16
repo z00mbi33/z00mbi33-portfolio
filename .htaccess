@@ -1,6 +1,7 @@
-DirectoryIndex index.html
+DirectoryIndex index.html index.php
 
 Options -Indexes
+Options +FollowSymLinks
 
 ErrorDocument 400 /400.html
 ErrorDocument 401 /401.html
