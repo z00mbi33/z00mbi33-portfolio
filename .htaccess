@@ -35,10 +35,11 @@ ErrorDocument 504 /504.html
 
 <IfModule mod_rewrite.c>
     RewriteEngine On
+    Options +FollowSymLinks
 
-    # Route any /task sub-paths directly to Laravel's entry point
+    # Send all non-existent files under /task directly to the front controller
     RewriteCond %{REQUEST_URI} ^/task/
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^task/(.*)$ task/index.php [L,QSA]
+    RewriteRule ^task/(.*)$ /task/index.php [L]
 </IfModule>
